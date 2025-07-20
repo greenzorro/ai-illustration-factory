@@ -20,3 +20,7 @@
 - child_book_m_paste.py：把精修过的局部准确贴回原位置。
 
 我使用这套系统成功接过AI插画商单，流程顺利跑通。接单的详细经历见：[卖AI图，从开单到金盆洗手](https://victor42.eth.limo/post/automate-ai-illustrations-production/)
+
+---
+
+Created by [Victor_42](https://victor42.work/)
