@@ -1,0 +1,205 @@
+{
+  "30": {
+    "inputs": {
+      "samples": [
+        "202",
+        0
+      ],
+      "vae": [
+        "135",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "31": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "30",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Save Image"
+    }
+  },
+  "101": {
+    "inputs": {
+      "resolution": "1024x1024 (1.0)",
+      "batch_size": 1,
+      "width_override": 0,
+      "height_override": 0
+    },
+    "class_type": "SDXLEmptyLatentSizePicker+",
+    "_meta": {
+      "title": "🔧 Empty Latent Size Picker"
+    }
+  },
+  "135": {
+    "inputs": {
+      "vae_name": "flux/ae.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "Load VAE"
+    }
+  },
+  "140": {
+    "inputs": {
+      "width": [
+        "101",
+        1
+      ],
+      "height": [
+        "101",
+        2
+      ],
+      "batch_size": 1
+    },
+    "class_type": "EmptySD3LatentImage",
+    "_meta": {
+      "title": "EmptySD3LatentImage"
+    }
+  },
+  "144": {
+    "inputs": {
+      "clip_name1": "sd3m/t5xxl_fp8_e4m3fn.safetensors",
+      "clip_name2": "sd3m/clip_l.safetensors",
+      "type": "flux"
+    },
+    "class_type": "DualCLIPLoader",
+    "_meta": {
+      "title": "DualCLIPLoader"
+    }
+  },
+  "147": {
+    "inputs": {
+      "lora_name": "child-book-watercolor.safetensors",
+      "strength_model": 0.8,
+      "strength_clip": 1,
+      "model": [
+        "276",
+        0
+      ],
+      "clip": [
+        "144",
+        0
+      ]
+    },
+    "class_type": "LoraLoader",
+    "_meta": {
+      "title": "Load LoRA"
+    }
+  },
+  "177": {
+    "inputs": {
+      "text": "Watercolor style, outlines.\n\nThere are 2 characters.\n\n<Character-1>A young boy with short jet-black hair wearing red T-shirt, navy denim shorts, and white sneakers, crouching on the left side facing right with right arm extended towards flowers, fingers curled in picking motion, gaze focused intently on yellow daffodil cluster, slight mischievous smile on face</Character-1>\n\n<Character-2>A middle-aged Chinese woman with short black wavy hair and rectangular glasses, wearing light blue button-up shirt and beige linen trousers, bending forward from the right side with left arm reaching across frame to grasp boy's upper right arm, palm applying gentle restraining pressure, right hand gesturing \"stop\" sign, soft facial features showing patient expression while making eye contact with boy</Character-2>\n\n<Background>Sunny spring park with vibrant flower beds containing daffodils, tulips and hyacinths, soft green grass underfoot, warm sunlight filtering through deciduous trees</Background>\n\nperfect eyes, eyebrows, perfect mouth, normal lips, natural color lips, character design, sharp focus, natural lighting.\n",
+      "clip": [
+        "147",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "202": {
+    "inputs": {
+      "seed": 244406209308082,
+      "steps": 20,
+      "cfg": 1,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 1,
+      "model": [
+        "204",
+        0
+      ],
+      "positive": [
+        "207",
+        0
+      ],
+      "negative": [
+        "207",
+        0
+      ],
+      "latent_image": [
+        "140",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "KSampler"
+    }
+  },
+  "204": {
+    "inputs": {
+      "max_shift": 1.15,
+      "base_shift": 0.5,
+      "width": [
+        "101",
+        1
+      ],
+      "height": [
+        "101",
+        2
+      ],
+      "model": [
+        "147",
+        0
+      ]
+    },
+    "class_type": "ModelSamplingFlux",
+    "_meta": {
+      "title": "ModelSamplingFlux"
+    }
+  },
+  "207": {
+    "inputs": {
+      "guidance": 3.5,
+      "conditioning": [
+        "177",
+        0
+      ]
+    },
+    "class_type": "FluxGuidance",
+    "_meta": {
+      "title": "FluxGuidance"
+    }
+  },
+  "234": {
+    "inputs": {
+      "value": 2048
+    },
+    "class_type": "easy int",
+    "_meta": {
+      "title": "Int"
+    }
+  },
+  "236": {
+    "inputs": {
+      "value": 1024
+    },
+    "class_type": "easy int",
+    "_meta": {
+      "title": "Int"
+    }
+  },
+  "276": {
+    "inputs": {
+      "unet_name": "flux/flux1-dev.sft",
+      "weight_dtype": "fp8_e4m3fn"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "Load Diffusion Model"
+    }
+  }
+}

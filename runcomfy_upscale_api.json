@@ -1,0 +1,304 @@
+{
+  "34": {
+    "inputs": {
+      "upscale_method": "lanczos",
+      "megapixels": 8,
+      "image": [
+        "134",
+        0
+      ]
+    },
+    "class_type": "ImageScaleToTotalPixels",
+    "_meta": {
+      "title": "ImageScaleToTotalPixels"
+    }
+  },
+  "36": {
+    "inputs": {
+      "tile_width": [
+        "111",
+        0
+      ],
+      "tile_height": [
+        "111",
+        1
+      ],
+      "image": [
+        "34",
+        0
+      ]
+    },
+    "class_type": "TTP_Image_Tile_Batch",
+    "_meta": {
+      "title": "TTP_Image_Tile_Batch"
+    }
+  },
+  "96": {
+    "inputs": {
+      "tile_size": 1024,
+      "samples": [
+        "259",
+        0
+      ],
+      "vae": [
+        "248",
+        0
+      ]
+    },
+    "class_type": "VAEDecodeTiled",
+    "_meta": {
+      "title": "VAE Decode (Tiled)"
+    }
+  },
+  "111": {
+    "inputs": {
+      "width_factor": 2,
+      "height_factor": 3,
+      "overlap_rate": 0.05,
+      "image": [
+        "34",
+        0
+      ]
+    },
+    "class_type": "TTP_Tile_image_size",
+    "_meta": {
+      "title": "TTP_Tile_image_size"
+    }
+  },
+  "127": {
+    "inputs": {
+      "padding": 128,
+      "tiles": [
+        "262",
+        0
+      ],
+      "positions": [
+        "36",
+        1
+      ],
+      "original_size": [
+        "36",
+        2
+      ],
+      "grid_size": [
+        "36",
+        3
+      ]
+    },
+    "class_type": "TTP_Image_Assy",
+    "_meta": {
+      "title": "TTP_Image_Assy"
+    }
+  },
+  "129": {
+    "inputs": {
+      "pixels": [
+        "266",
+        0
+      ],
+      "vae": [
+        "248",
+        0
+      ]
+    },
+    "class_type": "VAEEncode",
+    "_meta": {
+      "title": "VAE Encode"
+    }
+  },
+  "133": {
+    "inputs": {
+      "model_name": "nmkdSiaxCX_200k.pt"
+    },
+    "class_type": "UpscaleModelLoader",
+    "_meta": {
+      "title": "Load Upscale Model"
+    }
+  },
+  "134": {
+    "inputs": {
+      "upscale_model": [
+        "133",
+        0
+      ],
+      "image": [
+        "263",
+        0
+      ]
+    },
+    "class_type": "ImageUpscaleWithModel",
+    "_meta": {
+      "title": "Upscale Image (using Model)"
+    }
+  },
+  "248": {
+    "inputs": {
+      "vae_name": "flux/ae.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "Load VAE"
+    }
+  },
+  "249": {
+    "inputs": {
+      "clip_name1": "sd3m/t5xxl_fp8_e4m3fn.safetensors",
+      "clip_name2": "sd3m/clip_l.safetensors",
+      "type": "flux"
+    },
+    "class_type": "DualCLIPLoader",
+    "_meta": {
+      "title": "DualCLIPLoader"
+    }
+  },
+  "250": {
+    "inputs": {
+      "lora_name": "Flux_Dev_4_step_lora.safetensors",
+      "strength_model": 1,
+      "strength_clip": 1,
+      "model": [
+        "256",
+        0
+      ],
+      "clip": [
+        "249",
+        0
+      ]
+    },
+    "class_type": "LoraLoader",
+    "_meta": {
+      "title": "Load LoRA"
+    }
+  },
+  "253": {
+    "inputs": {
+      "text": "high quality, detailed, hd, 8k , 4k , sharp, highly detailed",
+      "clip": [
+        "250",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "256": {
+    "inputs": {
+      "unet_name": "flux/flux1-dev.sft",
+      "weight_dtype": "fp8_e4m3fn"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "Load Diffusion Model"
+    }
+  },
+  "259": {
+    "inputs": {
+      "seed": 956855657258322,
+      "steps": 4,
+      "cfg": 1,
+      "sampler_name": "euler",
+      "scheduler": "simple",
+      "denoise": 0.15,
+      "model": [
+        "250",
+        0
+      ],
+      "positive": [
+        "261",
+        0
+      ],
+      "negative": [
+        "261",
+        0
+      ],
+      "latent_image": [
+        "129",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "KSampler"
+    }
+  },
+  "261": {
+    "inputs": {
+      "guidance": 2.5,
+      "conditioning": [
+        "253",
+        0
+      ]
+    },
+    "class_type": "FluxGuidance",
+    "_meta": {
+      "title": "FluxGuidance"
+    }
+  },
+  "262": {
+    "inputs": {
+      "images": [
+        "96",
+        0
+      ]
+    },
+    "class_type": "easy imageListToImageBatch",
+    "_meta": {
+      "title": "Image List To Image Batch"
+    }
+  },
+  "263": {
+    "inputs": {
+      "width": 1024,
+      "height": 1024,
+      "interpolation": "nearest-exact",
+      "method": "keep proportion",
+      "condition": "downscale if bigger",
+      "multiple_of": 2,
+      "image": [
+        "264",
+        0
+      ]
+    },
+    "class_type": "ImageResize+",
+    "_meta": {
+      "title": "🔧 Image Resize"
+    }
+  },
+  "264": {
+    "inputs": {
+      "image": "水彩-1.png",
+      "upload": "image"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "Load Image"
+    }
+  },
+  "265": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "127",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Save Image"
+    }
+  },
+  "266": {
+    "inputs": {
+      "image": [
+        "36",
+        0
+      ]
+    },
+    "class_type": "easy imageBatchToImageList",
+    "_meta": {
+      "title": "Image Batch To Image List"
+    }
+  }
+}
