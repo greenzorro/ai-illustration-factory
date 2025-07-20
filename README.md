@@ -16,9 +16,7 @@
 - child_book_4_organize.py：4号程序，把成品图按项目整理。
 - child_book_f_ps.py：从高清大图里挑出需要人工PS修改的，复制到专门的目录。
 - child_book_f_fix.py：从高清大图里挑出需要插画师修改的，复制到专门的目录。
-- child_book_m_crop.py：把高清大图裁剪一块局部用于精修。（下一章会讲）
-- child_book_m_paste.py：把精修过的局部准确贴回原位置。（下一章会讲）
+- child_book_m_crop.py：把高清大图裁剪一块局部用于精修。
+- child_book_m_paste.py：把精修过的局部准确贴回原位置。
 
-我使用这套系统成功接过AI插画商单，流程顺利跑通。接单的详细经历见：
-
-[卖AI图，从开单到金盆洗手](https://victor42.eth.limo/post/automate-ai-illustrations-production/)
+我使用这套系统成功接过AI插画商单，流程顺利跑通。接单的详细经历见：[卖AI图，从开单到金盆洗手](https://victor42.eth.limo/post/automate-ai-illustrations-production/)
