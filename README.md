@@ -1,6 +1,6 @@
 # ai-illustration-factory
 
-![](https://victor42.work/assets/images/%E8%87%AA%E5%8A%A8%E5%8C%96AI%E6%8F%92%E7%94%BB%E7%94%9F%E6%88%90%E7%B3%BB%E7%BB%9F.webp)
+![89852ef4042c193cd77916efb0cf70b6](https://github.com/user-attachments/assets/3a861189-5fc3-44ae-9586-7c899db294b6)
 
 这是 [🎨AI插画自动化全流程实操手册](https://qvokpfxqsh.feishu.cn/wiki/KJMgwMn0wiXeiqkFvHHcHFxAn8B) 的Python代码部分，并非完整项目。该系统能实现从一列Excel内容大批量生成特定风格的AI插画，AI自动生成文生图提示词，支持人物一致性，并附带大量后期修补工具。
 
